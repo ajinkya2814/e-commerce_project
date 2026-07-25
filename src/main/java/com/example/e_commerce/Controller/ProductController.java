@@ -5,6 +5,7 @@ import com.example.e_commerce.DTO.Product.ProductRequestDTO;
 import com.example.e_commerce.DTO.Product.ProductResponseDTO;
 import com.example.e_commerce.Service.ProductServiceImpl;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -12,14 +13,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/product")
 @Validated
 public class ProductController {
 
 
-    @Autowired
-    private ProductServiceImpl productService;
+    private final ProductServiceImpl productService;
 
 
     @PostMapping("/uplode")

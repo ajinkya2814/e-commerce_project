@@ -12,8 +12,8 @@ import com.example.e_commerce.Repository.UserRepository;
 import com.example.e_commerce.Role.roleName;
 import com.example.e_commerce.Security.JwtService;
 import com.example.e_commerce.Security.UserPrincipal;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,29 +22,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@RequiredArgsConstructor
 public class UsersServiceImplementation {
 
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final ModelMapper modelMapper;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final EmailServiceImpl emailService;
+    private final AuthenticationManager authenticationManager;
+    private final JwtService jwtService;
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private RoleRepository roleRepository;
-
-    @Autowired
-    private ModelMapper modelMapper;
-
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    @Autowired
-    private EmailServiceImpl emailService;
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private JwtService jwtService;
 
     @Transactional
     public AuthResponseDTO userRegistration(RegisterRequestDTO requestDTO){
@@ -95,8 +83,6 @@ public class UsersServiceImplementation {
 
         Users users = principal.getUsers();
 
-
-
 //        Users users = userRepository.findByEmail(email)
 //                .orElseThrow(() ->
 //                        new UnAuthorizedException(ErrorMessage.INVALID_EMAIL_OR_PASSWORD));
@@ -122,6 +108,7 @@ public class UsersServiceImplementation {
 //                .message(AppConstants.LOGIN_SUCCESS)
 //                .role(users.getRole().getName())
 //                .build();
+
         return buildAuthResponse(users, AppConstants.LOGIN_SUCCESS);
 
     }

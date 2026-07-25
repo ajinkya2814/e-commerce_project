@@ -6,6 +6,7 @@ import com.example.e_commerce.DTO.Role.RoleRequestDTO;
 import com.example.e_commerce.DTO.Role.RoleResponseDTO;
 import com.example.e_commerce.Service.RoleServiceImpl;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -13,13 +14,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/roles")
 @Validated
 public class RoleController {
 
-    @Autowired
-    private RoleServiceImpl roleService;
+
+    private final RoleServiceImpl roleService;
 
     @PostMapping("/uplode")
     public ResponseEntity<RoleResponseDTO> save (@Valid @RequestBody RoleRequestDTO requestDTO){

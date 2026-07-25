@@ -6,6 +6,7 @@ import com.example.e_commerce.DTO.Role.RoleResponseDTO;
 import com.example.e_commerce.Exception.ResourceNotFoundException;
 import com.example.e_commerce.Model.Role;
 import com.example.e_commerce.Repository.RoleRepository;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,13 +14,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class RoleServiceImpl {
 
-    @Autowired
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
+    private final ModelMapper modelMapper;
 
-    @Autowired
-    private ModelMapper modelMapper;
 
     public RoleResponseDTO createRole (RoleRequestDTO requestDTO){
 

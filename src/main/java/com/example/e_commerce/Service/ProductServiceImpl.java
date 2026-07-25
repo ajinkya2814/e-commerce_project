@@ -6,6 +6,7 @@ import com.example.e_commerce.DTO.Product.ProductResponseDTO;
 import com.example.e_commerce.Exception.ResourceNotFoundException;
 import com.example.e_commerce.Model.Product;
 import com.example.e_commerce.Repository.ProductRepository;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,13 +14,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class ProductServiceImpl {
 
-    @Autowired
-    private ProductRepository productRepository;
-
-    @Autowired
-    private ModelMapper modelMapper;
+    private final ProductRepository productRepository;
+    private final ModelMapper modelMapper;
 
 
     public ProductResponseDTO save1(ProductRequestDTO requestDTO){
