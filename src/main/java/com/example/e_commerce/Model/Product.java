@@ -2,6 +2,7 @@ package com.example.e_commerce.Model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.core.SpringVersion;
 
 @Table(name = "products")
 @Getter
@@ -25,4 +26,7 @@ public class Product extends BaseClassEntity{
     @JoinColumn(name = "seller_id")
     private Users seller;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
 }

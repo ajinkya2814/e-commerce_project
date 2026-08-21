@@ -71,7 +71,6 @@ public class ProductServiceImpl {
                         new ResourceNotFoundException("Product not found"));
 
         modelMapper.map(dto, product);
-
         Product updatedProduct = productRepository.save(product);
 
         return ProductResponseDTO.builder()
