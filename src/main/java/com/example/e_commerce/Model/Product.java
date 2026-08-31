@@ -2,7 +2,6 @@ package com.example.e_commerce.Model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.core.SpringVersion;
 
 @Table(name = "products")
 @Getter

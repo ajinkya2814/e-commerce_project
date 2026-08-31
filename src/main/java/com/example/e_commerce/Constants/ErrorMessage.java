@@ -11,4 +11,7 @@ public final class ErrorMessage {
     public static final String ACCOUNT_DISABLE = "Account is Disable. please contact support.";
     public static final String ACCOUNT_LOCKED = "Account is Locked. please contact support";
     public static final String EMAIL_NOT_VERIFIED = "Please Verify email before logging in ";
+    public static final String CART_NOT_FOUND = "Cart Not Found..";
+    public static final String CART_ITEM_NOT_FOUND = "Item Not Found in Cart..";
+    public static final String INSUFFICIENT_STOCK = "Requested quantity exceeds available stock";
 }

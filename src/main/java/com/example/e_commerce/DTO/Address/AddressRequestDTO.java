@@ -1,6 +1,5 @@
 package com.example.e_commerce.DTO.Address;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
