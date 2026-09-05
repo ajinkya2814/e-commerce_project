@@ -28,7 +28,7 @@ public class Users extends BaseClassEntity{
     @Column(nullable = false, length = 15)
     private String phone;
 
-    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    @ManyToOne(fetch = FetchType.EAGER,optional = false)
     @JoinColumn(name = "role_id",
             nullable = false,
             foreignKey = @ForeignKey(name = "fk_user_role"))

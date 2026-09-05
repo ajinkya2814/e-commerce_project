@@ -39,3 +39,7 @@ out/
 
 ### Notes ###
 src/main/java/com/example/e_commerce/Notes/**
+
+### Secrets ###
+src/main/resources/application.properties
+src/main/resources/application-prod.properties

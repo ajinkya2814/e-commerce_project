@@ -2,6 +2,7 @@ package com.example.e_commerce.Config;
 
 
 import com.example.e_commerce.Security.CustomUserDetailsService;
+import com.example.e_commerce.Security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -25,7 +27,7 @@ import java.util.List;
 public class SecurityConfig {
 
     @Configuration
-    public class CorsConfig {
+    public static class CorsConfig {
 
         @Bean
         public CorsConfigurationSource corsConfigurationSource() {
@@ -62,6 +64,11 @@ public class SecurityConfig {
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
+    @Autowired
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
+
+
+
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){
         return new  BCryptPasswordEncoder();
@@ -84,18 +91,20 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain (HttpSecurity http) throws Exception{
         return http.authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll()//Allow all requests without authentication
+                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/h2-console/**").permitAll()
+                        .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                        .anyRequest().authenticated()
                 )
                 .csrf(AbstractHttpConfigurer::disable)
-                .cors(cors -> {})//Disable csrf protection
-                // Allow H2 Console in iframe
+                .cors(cors -> {})
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .headers(headers ->
                         headers.frameOptions(frame -> frame.disable())
                 )
+                .authenticationProvider(authenticationProvider())
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
-
     }
-
 
 }

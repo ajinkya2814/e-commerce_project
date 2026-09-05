@@ -14,4 +14,5 @@ public final class ErrorMessage {
     public static final String CART_NOT_FOUND = "Cart Not Found..";
     public static final String CART_ITEM_NOT_FOUND = "Item Not Found in Cart..";
     public static final String INSUFFICIENT_STOCK = "Requested quantity exceeds available stock";
+    public static final String ADDRESS_NOT_FOUND = "Address Not found with id : ";
 }

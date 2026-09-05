@@ -21,16 +21,10 @@ public class CartController {
 
     @PostMapping("/add")
     public ResponseEntity<CartResponseDTO> addItem(
-//            @AuthenticationPrincipal UserPrincipal principal,
+            @AuthenticationPrincipal UserPrincipal principal,
             @Valid @RequestBody CartItemRequestDTO requestDTO) {
-        // TEMPORARY FIX: Hardcode user ID 1 for testing purposes
-        Long userId = 1L;
-
-        // Once Security is fully working, you will switch it back to:
-        // Long userId = principal.getUsers().getId();
-
+        Long userId = principal.getUsers().getId();
         return ResponseEntity.ok(cartService.addItemsToCart(userId, requestDTO));
-//        return ResponseEntity.ok(cartService.addItemsToCart(principal.getUsers(), requestDTO));
     }
 
     @GetMapping

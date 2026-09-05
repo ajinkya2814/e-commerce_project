@@ -15,10 +15,10 @@ public class AddressRequestDTO {
 
     @NotBlank(message = "AddressLine1 Required")
     @Size(min = 2, max = 150,
-            message = "Address should be between 2 to 50 Char")
+            message = "Address should be between 2 to 150 Char")
     private String addressLine1;
-    @Size(min = 2, max = 50,
-            message = "Address should be between 2 to 50 Char")
+    @Size(min = 2, max = 150,
+            message = "Address should be between 2 to 150 Char")
     private String addressLine2;
     @NotBlank(message = "City Required")
     @Size(min = 2, max = 50,
